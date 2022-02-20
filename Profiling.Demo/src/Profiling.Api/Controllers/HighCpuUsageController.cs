@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Profiling.Api.Services.HighCpuUsage;
 
 namespace Profiling.Api.Controllers
 {
@@ -6,18 +7,17 @@ namespace Profiling.Api.Controllers
     [Route("high-cpu")]
     public class HighCpuUsageController : ControllerBase
     {
-
-        private readonly ILogger<HighCpuUsageController> _logger;
-
-        public HighCpuUsageController(ILogger<HighCpuUsageController> logger)
+        private readonly IHighCpuUsageService _service;
+        public HighCpuUsageController(IHighCpuUsageService service)
         {
-            _logger = logger;
+            _service = service;
         }
 
         [HttpGet()]
-        public void Get()
+        public IActionResult Get()
         {
-           
+           _service.Run();
+           return Ok();
         }
     }
 }

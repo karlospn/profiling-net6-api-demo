@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Profiling.Api.Services.MemoryLeak;
 
 namespace Profiling.Api.Controllers
 {
@@ -6,18 +7,17 @@ namespace Profiling.Api.Controllers
     [Route("memory-leak")]
     public class MemoryLeakController : ControllerBase
     {
-
-        private readonly ILogger<MemoryLeakController> _logger;
-
-        public MemoryLeakController(ILogger<MemoryLeakController> logger)
+        private readonly IMemoryLeakService _service;
+        public MemoryLeakController(IMemoryLeakService service)
         {
-            _logger = logger;
+            _service = service;
         }
 
         [HttpGet()]
-        public void Get()
+        public IActionResult Get()
         {
-           
+           _service.Run();
+           return Ok();
         }
     }
 }
