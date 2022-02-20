@@ -7,7 +7,7 @@ namespace Profiling.Api.Services.MemoryLeak
     {
         private ConcurrentDictionary<Guid, object> _cache { get; } = new();
         private string _alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
-        private int messageBytesSize = 52428800;
+        private int messageBytesSize = 10485760;
 
         public void Run()
         {
