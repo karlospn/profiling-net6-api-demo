@@ -16,8 +16,8 @@ namespace Profiling.Api.Controllers
         [HttpGet()]
         public IActionResult Get()
         {
-           _service.Run();
-           return Ok();
+            _service.Run();
+            return Ok();
         }
     }
 }

@@ -5,11 +5,18 @@ namespace Profiling.Api.Services.MemoryLeak
 {
     public class MemoryLeakService: IMemoryLeakService
     {
+
         private ConcurrentDictionary<Guid, object> _cache { get; } = new();
+
         private string _alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
-        private int messageBytesSize = 10485760;
+        private int messageBytesSize = 32000;
 
         public void Run()
+        {
+            AddToCache();
+        }
+
+        private void AddToCache()
         {
             _cache.GetOrAdd(Guid.NewGuid(), GetObject());
         }

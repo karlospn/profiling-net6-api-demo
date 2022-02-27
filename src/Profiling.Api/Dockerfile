@@ -12,7 +12,8 @@ RUN dotnet publish src/*.csproj -c Release -o /app/publish
 # Install dotnet debug tools
 RUN dotnet tool install --tool-path /tools dotnet-trace \
  && dotnet tool install --tool-path /tools dotnet-counters \
- && dotnet tool install --tool-path /tools dotnet-dump
+ && dotnet tool install --tool-path /tools dotnet-dump \
+ && dotnet tool install --tool-path /tools dotnet-gcdump
 
 # Build runtime imagedock
 FROM mcr.microsoft.com/dotnet/aspnet:6.0-bullseye-slim
